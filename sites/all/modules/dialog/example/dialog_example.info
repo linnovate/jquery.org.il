@@ -1,0 +1,12 @@
+; $Id: dialog_example.info,v 1.1 2009/12/07 01:47:59 rz Exp $
+name = Dialog Example
+description = Example implementation of the dialog API.
+core = 6.x
+dependencies[] = dialog
+
+; Information added by drupal.org packaging script on 2010-02-23
+version = "6.x-1.x-dev"
+core = "6.x"
+project = "dialog"
+datestamp = "1266926654"
+

@@ -1,0 +1,16 @@
+; $Id: dialog.info,v 1.1 2009/12/07 01:46:11 rz Exp $
+name = Dialog API
+description = Dialog window API based on jQuery UI Dialog and CTools ajax.
+core = 6.x
+package = User interface
+
+dependencies[] = ctools
+dependencies[] = jquery_update
+dependencies[] = jquery_ui
+
+; Information added by drupal.org packaging script on 2010-02-23
+version = "6.x-1.x-dev"
+core = "6.x"
+project = "dialog"
+datestamp = "1266926654"
+

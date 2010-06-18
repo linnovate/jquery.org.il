@@ -1,0 +1,39 @@
+;$Id: tendu_default.info,v 1.1.2.1.2.5 2009/01/26 21:36:34 tombigel Exp $
+
+;=== Regions ===/
+regions[header] = Header
+regions[main_nav] = Main Navigation
+regions[left] = First sidebar
+regions[right] = Second sidebar
+regions[content_before] = Before Content and Sidebars
+regions[content_top] = Above Main Content   
+regions[content] = Main Content
+regions[content_bottom] = Bellow Main Content 
+regions[content_after] = After Content and Sidebars
+regions[footer] = Footer
+
+;=== Stylesheets ===/
+stylesheets[all][] = css/style_jqoilo.css
+stylesheets[all][] = css/lavalamp.css
+
+;=== Conditiona Stylesheets ==
+conditional-stylesheets[if IE][all][] = css/ie_jqoilo.css
+
+;=== Scripts ===/
+scripts[] = scripts/script.js
+scripts[] = scripts/bigtarget.js
+scripts[] = scripts/easing.js
+scripts[] = scripts/jquery_lavalamp.js
+scripts[] = scripts/jquery.url.js
+
+;=== Information added by drupal.org packaging script on 2009-02-22 ===/
+version = "6.x-2.1-beta5"
+core = "6.x"
+project = "tendu"
+datestamp = "1235344851"
+name = Jqoil Theme
+version = 2.1
+description = Jqoil Theme. Tableless, Cross browser support.
+core = 6.x
+engine = phptemplate
+base theme = tendu

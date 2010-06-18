@@ -1,0 +1,29 @@
+.lamp {
+	position: relative;
+	overflow: hidden;
+}
+.lamp li {
+	float: left;
+	list-style: none;
+}
+.lamp li.backLava {
+	background-color:#eee;
+	width: 9px;
+	z-index: 8;
+	position: absolute;
+	-moz-border-radius:8px;
+	-webkit-border-radius:8px;
+	border-radius:8px;
+}
+.lamp li a {
+	outline: none;
+	text-align: center;
+	padding: 5px 10px;
+	letter-spacing: 0;
+	z-index: 10;
+	display: block;
+	float: left;
+	position: relative;
+	overflow: hidden;
+	margin: auto;
+}

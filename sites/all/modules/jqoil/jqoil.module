@@ -1,0 +1,129 @@
+<?php
+
+define('TEMPLATES_DIR_PATH', drupal_get_path('theme', $theme) . '/tpl');
+
+/**
+ * Implementation of hook_menu().
+ */
+function jqoil_menu() {
+	$items['home'] = array(
+      'title' => '',
+      'page callback' => 'jqoil_pages',
+      'page arguments' => array('jqoil_page_home'),
+      'access arguments' => array('access content'),
+	   //'type' => MENU_CALLBACK,
+	);
+
+	return $items;
+}
+
+
+ /**
+ * Pages callback
+ */
+function jqoil_pages($key) {	
+	return theme($key);
+}
+
+/**
+ * Implementation of hook_theme()
+ */
+function jqoil_theme($existing, $type, $theme, $path) {
+	return array(
+      'jqoil_page_home' => array(
+      	'arguments' => array('titles' => null),
+      	'template' => 'jqoil-page-home',
+      	'path' => TEMPLATES_DIR_PATH,
+	   ),
+	   
+//	   'create_content_form' => array(
+//      	'arguments' => array('titles' => null),
+//	   ),
+	);
+}
+
+
+/**
+ * Implementation of hook_block().
+ */
+function jqoil_block($op = 'list', $delta = 0, $edit = array()) {
+  if ($op == 'list') {
+    $blocks[0] = array(
+      'info'    => t('User Service Block'),
+      'weight'  => 0, 
+      'enabled' => 1, 
+      'region'  => 'second-sidebar'
+    );
+    return $blocks;
+  }
+  else if ($op == 'view') {
+    switch ($delta) {
+      case 0:
+        $block = array(
+          'subject'   => t('User Service Block'),
+          'content'   => jqoil_user_service_block(),
+        );
+        break;
+    }
+    return $block;
+  }
+}
+
+/**
+ * Implementation of hook_from_alter().
+*/ 
+function jqoil_form_alter(&$form, $form_state, $form_id) {
+  //dpm($form);
+  switch ($form_id){
+  	case 'search_block_form':
+  	  $form[$form_id] = array(
+  	    '#title' => t(''),
+        '#type' => 'textfield',
+    	'#size' => 20,
+   		'#default_value' => '',
+    	'#attributes' => array('title' => t('Enter the terms you wish to search for.')),
+  	  );
+  	  $form['submit'] = array('#type' => 'submit', '#value' => t('Search'));
+  	break;	
+  }
+}
+/**
+ * Blocks callback
+ */
+function jqoil_user_service_block() {
+  global $user;
+  if ($user->uid){
+   return views_embed_view('my_content', 'block_2').drupal_get_form('create_content_form').l(t('My bookmarks >>'), 'bookmarks');
+  }
+}
+
+function create_content_form(){
+  foreach(content_types() as $type) {
+    if (isset($type) && node_access('create', $type)) {
+      $option[$type['type']] = $type['name'];
+    }
+  }
+  $form['create_content']=array(
+    //'#title'         => t('Create Content'),
+    '#type'          => 'select',
+    '#options'       => $option,
+  );
+  $form['submit']=array(
+    '#type'  => 'submit',
+    '#value' => t('Create Content'),
+  );
+  return $form;
+}
+function create_content_form_submit($form, &$form_state) {
+  drupal_goto('node/add/'. $form_state['values']['create_content']);
+  //dpm($form_state['values']);
+}
+
+/**
+* JQoil Api
+**/
+function jqoil_get_view_display_title($name, $display_id = 'default') {
+	$view = views_get_view($name);
+	$view_display_title = $view->display[$display_id]->display_options['title'];
+	return $view_display_title;
+} 

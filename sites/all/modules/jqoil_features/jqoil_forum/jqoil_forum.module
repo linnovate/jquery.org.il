@@ -1,0 +1,3 @@
+<?php
+
+include_once('jqoil_forum.features.inc');

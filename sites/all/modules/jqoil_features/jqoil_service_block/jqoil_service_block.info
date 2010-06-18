@@ -1,0 +1,7 @@
+core = "6.x"
+dependencies[] = "views"
+description = "jqoil_service_block"
+features[views][] = "my_content"
+name = "jqoil_service_block"
+package = "Features"
+project = "jqoil_service_block"

@@ -1,0 +1,6 @@
+core = "6.x"
+
+description = "jqoil custom module"
+name = "jqoil"
+project = "jqoil"
+package = "Linnovate custom modules"  
